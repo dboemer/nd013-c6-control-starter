@@ -59,6 +59,18 @@ using json = nlohmann::json;
 
 #define _USE_MATH_DEFINES
 
+static const double KP_STEER = 0.3;
+static const double KI_STEER = 0.001;
+static const double KD_STEER = 0.3;
+static const double MAX_STEER = 1.2;
+static const double MIN_STEER = -1.2;
+
+static const double KP_THROTTLE = 0.2;
+static const double KI_THROTTLE = 0.001;
+static const double KD_THROTTLE = 0.1;
+static const double MAX_THROTTLE = 1.0;
+static const double MIN_THROTTLE = -1.0;
+
 string hasData(string s) {
   auto found_null = s.find("null");
     auto b1 = s.find_first_of("{");
@@ -195,6 +207,23 @@ void set_obst(vector<double> x_points, vector<double> y_points, vector<State>& o
 	obst_flag = true;
 }
 
+size_t find_closest_waypoint(double x, double y, const vector<double>& x_vec, const vector<double>& y_vec){
+  
+  size_t closest_idx = 0;
+  double min_dist = std::numeric_limits<double>::infinity();
+  double dist = 0.0;
+
+  for (size_t i=0; i < x_vec.size(); i++){
+    dist = std::hypot(x_vec[i] - x, y_vec[i] - y);
+    if (dist < min_dist){
+      min_dist = dist;
+      closest_idx = i;
+    }
+  }
+
+  return closest_idx;
+}
+
 int main ()
 {
   cout << "starting server" << endl;
@@ -218,15 +247,17 @@ int main ()
   /**
   * TODO (Step 1): create pid (pid_steer) for steer command and initialize values
   **/
+  PID pid_steer = PID();
+  pid_steer.Init(KP_STEER, KI_STEER, KD_STEER, MAX_STEER, MIN_STEER);
 
 
   // initialize pid throttle
   /**
   * TODO (Step 1): create pid (pid_throttle) for throttle command and initialize values
   **/
-
-  PID pid_steer = PID();
   PID pid_throttle = PID();
+  pid_throttle.Init(KP_THROTTLE, KI_THROTTLE, KD_THROTTLE, MAX_THROTTLE, MIN_THROTTLE);
+
 
   h.onMessage([&pid_steer, &pid_throttle, &new_delta_time, &timer, &prev_timer, &i, &prev_timer](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode)
   {
@@ -288,19 +319,18 @@ int main ()
           /**
           * TODO (step 3): uncomment these lines
           **/
-//           // Update the delta time with the previous command
-//           pid_steer.UpdateDeltaTime(new_delta_time);
+          // Update the delta time with the previous command
+          pid_steer.UpdateDeltaTime(new_delta_time);
 
           // Compute steer error
           double error_steer;
-
-
           double steer_output;
 
           /**
           * TODO (step 3): compute the steer error (error_steer) from the position and the desired trajectory
           **/
-//           error_steer = 0;
+          
+          error_steer = 0;
 
           /**
           * TODO (step 3): uncomment these lines
