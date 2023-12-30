@@ -309,13 +309,24 @@ In the following subsection, plots for the throttle and steering are shown with 
 
 #### Throttle
 
-- Influence of P: 0.1, 0.3, 0.6:
+- Influence of P (0.2, 0.3, 0.6):
+
+<p float="left">
+  <img src="img/throttle-0.2-0.01-0.01.png" width="400"/>
+  <img src="img/throttle-error-0.2-0.01-0.01.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/throttle-0.3-0.01-0.01.png" width="400"/>
+  <img src="img/throttle-error-0.3-0.01-0.01.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/throttle-0.6-0.01-0.01.png" width="400"/>
+  <img src="img/throttle-error-0.6-0.01-0.01.png" width="400"/>
+</p>
 
 
-
-
-- Influence of I: 0.001, 0.01, 0.1:
-- Influence of D: 0.001, 0.01, 0.1:
+- Influence of I (0.001, 0.01, 0.1):
+- Influence of D (0.001, 0.01, 0.1):
 
 
 #### Steering
