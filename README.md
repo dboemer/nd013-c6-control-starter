@@ -358,6 +358,52 @@ In the following subsection, plots for the throttle and steering are shown with 
 
 #### Steering
 
+- Influence of P (0.2, 0.3, 0.6):
+
+<p float="left">
+  <img src="img/yaw-0.1-0.001-0.01.png" width="400"/>
+  <img src="img/yaw-error-0.1-0.001-0.01.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/yaw-0.3-0.001-0.01.png" width="400"/>
+  <img src="img/yaw-error-0.3-0.001-0.01.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/yaw-0.6-0.001-0.01.png" width="400"/>
+  <img src="img/yaw-error-0.6-0.001-0.01.png" width="400"/>
+</p>
+
+
+- Influence of I (0.0001, 0.001, 0.01):
+
+<p float="left">
+  <img src="img/yaw-0.3-0.0001-0.01.png" width="400"/>
+  <img src="img/yaw-error-0.3-0.0001-0.01.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/yaw-0.3-0.001-0.01.png" width="400"/>
+  <img src="img/yaw-error-0.3-0.001-0.01.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/yaw-0.3-0.01-0.01.png" width="400"/>
+  <img src="img/yaw-error-0.3-0.01-0.01.png" width="400"/>
+</p>
+
+
+- Influence of D (0.001, 0.01, 0.1):
+
+<p float="left">
+  <img src="img/yaw-0.3-0.001-0.001.png" width="400"/>
+  <img src="img/yaw-error-0.3-0.001-0.001.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/yaw-0.3-0.001-0.01.png" width="400"/>
+  <img src="img/yaw-error-0.3-0.001-0.01.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/yaw-0.3-0.001-0.1.png" width="400"/>
+  <img src="img/yaw-error-0.3-0.001-0.1.png" width="400"/>
+</p>
 
 ### Questions
 
