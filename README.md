@@ -263,28 +263,27 @@ pid_steer.Init(KP_STEER, KI_STEER, KD_STEER, MAX_STEER, MIN_STEER);
 
 The parameter values will be provided in the section [Evaluate and analyse the PID controller](#evaluate-and-analyse-the-pid-controller).  The corresponding steering error was computed by the difference between the target yaw and the actual yaw:
 ```cpp
-error_throttle = v_points[closest_idx] - velocity;
+error_steer = target_yaw - yaw;
 ```
 
 
 The target yaw can be defined in various ways.  Three different options were tested:
 
-- Version 1
+- Version 1: this version was inadequate since the trajectory planning information contained in the closest trajectory point was insufficient to steer the vehicle in the right direction in a timely manner.
 ```cpp
 target_yaw = angle_between_points(x_position, y_position, x_points[closest_idx], y_points[closest_idx]);
 ```
 
-- Version 2
+- Version 2: this version had the same problem than version 1, so that the delta between ''x[closest_idx]'' and ''x[closest_idx+1]'' did not provide sufficient information about the following trajectory.
 ```cpp
 double target_yaw = angle_between_points(x_points[closest_idx], y_points[closest_idx], x_points[closest_idx+1], y_points[closest_idx+1]);
 
 ```
 
-- Version 3
+- Version 3: this version solved the previous problem by including the average direction of the trajectory via its start and end points.
 ```cpp
 double target_yaw = angle_between_points(x_points[0], y_points[0], x_points[x_points.size()-1], y_points[y_points.size()-1]);
 ```
-
 
 
 ## Evaluate and analyse the PID controller
