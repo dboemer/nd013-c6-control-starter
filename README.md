@@ -274,7 +274,7 @@ The target yaw can be defined in various ways.  Three different options were tes
 target_yaw = angle_between_points(x_position, y_position, x_points[closest_idx], y_points[closest_idx]);
 ```
 
-- Version 2: this version had the same problem than version 1, so that the delta between ''x[closest_idx]'' and ''x[closest_idx+1]'' did not provide sufficient information about the following trajectory.
+- Version 2: this version had the same problem than version 1, so that the delta between `x[closest_idx]` and `x[closest_idx+1]` did not provide sufficient information about the following trajectory.
 ```cpp
 double target_yaw = angle_between_points(x_points[closest_idx], y_points[closest_idx], x_points[closest_idx+1], y_points[closest_idx+1]);
 
@@ -288,7 +288,23 @@ double target_yaw = angle_between_points(x_points[0], y_points[0], x_points[x_po
 
 ## Evaluate and analyse the PID controller
 
+In this section, plots of the velocity and yaw as well as the respective errors are analyzed to evaluate the PID controller.  In addition, the questions of the instructions are answered.
+
+
 ### Analysis of the plots
+
+The plots ot the velocity and yaw as well as the respective errors were used to tune the PID controllers, first for the throttle and then for the steering.  This order was chosen because the throttle was easier to tune than the steering due to the step-wise nature of the target velocity.
+
+For the throttle as well as the steering, a parametric analysis was carried out, first by adjusting the proportional (P) term and then by adjusting the integral (I) and derivative (D) terms.  For zero I- and D-terms, P was increased until moderate oscillations occured.  Then, the I-term was increased until the target level was more or less reached.  And finally, the D-term was increased to limit the oscillations.
+
+After this initial controller tuning, the optimal parameters are the following, with the imposed limits:
+
+step-wise nature of the target velocity
+
+- Trottle
+- Steering
+
+
 ### Questions
 
 * **How would you design a way to automatically tune the PID parameters?**
