@@ -348,7 +348,9 @@ int main ()
           }
           file_steer  << i ;
           file_steer  << " " << error_steer;
-          file_steer  << " " << steer_output << endl;
+          file_steer  << " " << steer_output;
+          file_steer  << " " << yaw;
+          file_steer  << " " << target_yaw << endl;
 
           ////////////////////////////////////////
           // Throttle control
@@ -396,7 +398,9 @@ int main ()
           file_throttle  << i ;
           file_throttle  << " " << error_throttle;
           file_throttle  << " " << brake_output;
-          file_throttle  << " " << throttle_output << endl;
+          file_throttle  << " " << throttle_output;
+          file_throttle  << " " << velocity;
+          file_throttle  << " " << v_points[closest_idx] << endl;
 
           // Send control
           json msgJson;
