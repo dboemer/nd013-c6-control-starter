@@ -59,15 +59,15 @@ using json = nlohmann::json;
 
 #define _USE_MATH_DEFINES
 
-static const double KP_STEER = 0.29;
-static const double KI_STEER = 0.0011;
-static const double KD_STEER = 0.6; // 0.3
+static const double KP_STEER = 0.3;
+static const double KI_STEER = 0.001;
+static const double KD_STEER = 0.8;
 static const double MAX_STEER = 1.2;
 static const double MIN_STEER = -1.2;
 
 // Good choice
-static const double KP_THROTTLE = 0.21;
-static const double KI_THROTTLE = 0.0009;
+static const double KP_THROTTLE = 0.2;
+static const double KI_THROTTLE = 0.001;
 static const double KD_THROTTLE = 0.1;
 static const double MAX_THROTTLE = 1.0;
 static const double MIN_THROTTLE = -1.0;
@@ -208,7 +208,7 @@ void set_obst(vector<double> x_points, vector<double> y_points, vector<State>& o
 	obst_flag = true;
 }
 
-size_t find_closest_waypoint(double x, double y, const vector<double>& x_vec, const vector<double>& y_vec){
+size_t find_closest_point(double x, double y, const vector<double>& x_vec, const vector<double>& y_vec){
   
   size_t closest_idx = 0;
   double min_dist = std::numeric_limits<double>::infinity();
@@ -330,9 +330,8 @@ int main ()
           /**
           * TODO (step 3): compute the steer error (error_steer) from the position and the desired trajectory
           **/
-          size_t closest_idx = find_closest_waypoint(x_position, y_position, x_points, y_points);
-          //double target_yaw = angle_between_points(x_position, y_position, x_points[closest_idx], y_points[closest_idx]);
-          double target_yaw = angle_between_points(x_position,y_position,x_points[x_points.size()-1],y_points[y_points.size()-1]);
+          size_t closest_idx = find_closest_point(x_position, y_position, x_points, y_points);
+          double target_yaw = angle_between_points(x_position, y_position, x_points[closest_idx], y_points[closest_idx]);
           error_steer = target_yaw - yaw;
 
           /**
@@ -368,8 +367,7 @@ int main ()
           * TODO (step 2): compute the throttle error (error_throttle) from the position and the desired speed
           **/
           // modify the following line for step 2
-          //error_throttle = v_points[closest_idx] - velocity;
-          error_throttle = v_points[v_points.size()- 1] - velocity; 
+          error_throttle = v_points[closest_idx] - velocity;
 
           double throttle_output = 0.0;
           double brake_output = 0.0;
