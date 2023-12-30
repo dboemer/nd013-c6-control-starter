@@ -60,8 +60,8 @@ using json = nlohmann::json;
 #define _USE_MATH_DEFINES
 
 static const double KP_STEER = 0.6;
-static const double KI_STEER = 0.0012;
-static const double KD_STEER = 0.0;//0.8;
+static const double KI_STEER = 0.001;
+static const double KD_STEER = 0.01;
 static const double MAX_STEER = 1.2;
 static const double MIN_STEER = -1.2;
 
@@ -78,6 +78,9 @@ string hasData(string s) {
     auto b2 = s.find_first_of("}");
     if (found_null != string::npos) {
       return "";
+
+
+
     }
     else if (b1 != string::npos && b2 != string::npos) {
       return s.substr(b1, b2 - b1 + 1);
@@ -291,16 +294,15 @@ int main ()
           double z_position = data["location_z"];
 
           std::cout << "Position" << std::endl;
-          std::cout << "x_position: "<< x_position << std::endl;
-          std::cout << "y_position: "<< y_position << std::endl;
-          std::cout << "waypoint_x: "<< waypoint_x << std::endl;
-          std::cout << "waypoint_y: "<< waypoint_y << std::endl;
-          std::cout << "x_points[0]: "<< x_points[0] << std::endl;
-          std::cout << "y_points[0]: "<< y_points[0] << std::endl;
+          std::cout << "waypoint_x:  "<< waypoint_x << std::endl;
+          std::cout << "waypoint_y:  "<< waypoint_y << std::endl;
           std::cout << "x_points[e]: "<< x_points[x_points.size()-1] << std::endl;
+          std::cout << "x_points[0]: "<< x_points[0] << std::endl;
+          std::cout << "x_position:  "<< x_position << std::endl;
           std::cout << "y_points[e]: "<< y_points[y_points.size()-1] << std::endl;
-          std::cout << "v_points[0]: "<< v_points[0] << std::endl;
-          std::cout << "v_points[e]: "<< v_points[x_points.size()-1] << std::endl;
+          std::cout << "y_points[0]: "<< y_points[0] << std::endl;
+          std::cout << "y_position:  "<< y_position << std::endl;
+
 
           if(!have_obst){
           	vector<double> x_obst = data["obst_x"];
