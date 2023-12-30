@@ -59,7 +59,7 @@ using json = nlohmann::json;
 
 #define _USE_MATH_DEFINES
 
-static const double KP_STEER = 0.6;
+static const double KP_STEER = 0.3;
 static const double KI_STEER = 0.001;
 static const double KD_STEER = 0.01;
 static const double MAX_STEER = 1.2;
@@ -342,6 +342,8 @@ int main ()
           * TODO (step 3): compute the steer error (error_steer) from the position and the desired trajectory
           **/
           size_t closest_idx = find_closest_point(x_position, y_position, x_points, y_points);
+          
+          // Alternative solutions
           //double target_yaw = angle_between_points(x_position, y_position, x_points[closest_idx], y_points[closest_idx]);
           //double target_yaw = angle_between_points(x_points[closest_idx], y_points[closest_idx], x_points[closest_idx+1], y_points[closest_idx+1]);
           double target_yaw = angle_between_points(x_points[0], y_points[0], x_points[x_points.size()-1], y_points[y_points.size()-1]);
