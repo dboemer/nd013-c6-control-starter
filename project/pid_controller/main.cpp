@@ -65,7 +65,6 @@ static const double KD_STEER = 0.01;
 static const double MAX_STEER = 1.2;
 static const double MIN_STEER = -1.2;
 
-// Good choice
 static const double KP_THROTTLE = 0.3;
 static const double KI_THROTTLE = 0.01;
 static const double KD_THROTTLE = 0.01;
@@ -78,9 +77,6 @@ string hasData(string s) {
     auto b2 = s.find_first_of("}");
     if (found_null != string::npos) {
       return "";
-
-
-
     }
     else if (b1 != string::npos && b2 != string::npos) {
       return s.substr(b1, b2 - b1 + 1);
@@ -293,16 +289,17 @@ int main ()
           double y_position = data["location_y"];
           double z_position = data["location_z"];
 
+          /* For deeper analysis:
           std::cout << "Position" << std::endl;
           std::cout << "waypoint_x:  "<< waypoint_x << std::endl;
-          std::cout << "waypoint_y:  "<< waypoint_y << std::endl;
           std::cout << "x_points[e]: "<< x_points[x_points.size()-1] << std::endl;
           std::cout << "x_points[0]: "<< x_points[0] << std::endl;
           std::cout << "x_position:  "<< x_position << std::endl;
+          std::cout << "waypoint_y:  "<< waypoint_y << std::endl;
           std::cout << "y_points[e]: "<< y_points[y_points.size()-1] << std::endl;
           std::cout << "y_points[0]: "<< y_points[0] << std::endl;
           std::cout << "y_position:  "<< y_position << std::endl;
-
+          */
 
           if(!have_obst){
           	vector<double> x_obst = data["obst_x"];
@@ -346,6 +343,7 @@ int main ()
           **/
           size_t closest_idx = find_closest_point(x_position, y_position, x_points, y_points);
           //double target_yaw = angle_between_points(x_position, y_position, x_points[closest_idx], y_points[closest_idx]);
+          //double target_yaw = angle_between_points(x_points[closest_idx], y_points[closest_idx], x_points[closest_idx+1], y_points[closest_idx+1]);
           double target_yaw = angle_between_points(x_points[0], y_points[0], x_points[x_points.size()-1], y_points[y_points.size()-1]);
           error_steer = target_yaw - yaw;
 
