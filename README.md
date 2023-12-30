@@ -313,7 +313,7 @@ In the following subsection, plots for the throttle and steering are shown with 
 
 <p float="left">
   <img src="img/throttle-0.1-0.01-0.01.png" width="400"/>
-  <img src="img/throttle-error-0.2-0.01-0.01.png" width="400"/>
+  <img src="img/throttle-error-0.1-0.01-0.01.png" width="400"/>
 </p>
 <p float="left">
   <img src="img/throttle-0.3-0.01-0.01.png" width="400"/>
@@ -326,7 +326,34 @@ In the following subsection, plots for the throttle and steering are shown with 
 
 
 - Influence of I (0.001, 0.01, 0.1):
+<p float="left">
+  <img src="img/throttle-0.3-0.001-0.01.png" width="400"/>
+  <img src="img/throttle-error-0.3-0.001-0.01.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/throttle-0.3-0.01-0.01.png" width="400"/>
+  <img src="img/throttle-error-0.3-0.01-0.01.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/throttle-0.3-0.1-0.01.png" width="400"/>
+  <img src="img/throttle-error-0.3-0.1-0.01.png" width="400"/>
+</p>
+
+
 - Influence of D (0.001, 0.01, 0.1):
+
+<p float="left">
+  <img src="img/throttle-0.3-0.01-0.001.png" width="400"/>
+  <img src="img/throttle-error-0.3-0.01-0.001.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/throttle-0.3-0.01-0.01.png" width="400"/>
+  <img src="img/throttle-error-0.3-0.01-0.01.png" width="400"/>
+</p>
+<p float="left">
+  <img src="img/throttle-0.3-0.01-0.1.png" width="400"/>
+  <img src="img/throttle-error-0.3-0.01-0.1.png" width="400"/>
+</p>
 
 
 #### Steering
