@@ -288,7 +288,7 @@ double target_yaw = angle_between_points(x_points[0], y_points[0], x_points[x_po
 
 ## Evaluate and analyse the PID controller
 
-In this section, plots of the velocity and yaw as well as the respective errors are analyzed to evaluate the PID controller.  In addition, the questions of the instructions are answered.
+In this section, plots of the velocity and yaw as well as the respective errors are analyzed to evaluate the PID controller.  In addition, the questions of the instructions are answered below.
 
 
 ### Analysis of the plots
@@ -421,6 +421,6 @@ In the following subsection, plots for the throttle and steering are shown with 
 
 ### Video
 
-A video with the (so far) optimal parameters is available [here](img/video.mp4).
+A video with (so far) optimal parameters is available [here](img/video.mp4).
 
 <img src="img/video.gif" width="600"/>
