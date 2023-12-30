@@ -67,10 +67,8 @@ static const double MIN_STEER = -1.2;
 
 // Good choice
 static const double KP_THROTTLE = 0.3;
-static const double KI_THROTTLE = 0.001;
 static const double KI_THROTTLE = 0.01;
-static const double KI_THROTTLE = 0.1;
-static const double KD_THROTTLE = 0.04;
+static const double KD_THROTTLE = 0.01;
 static const double MAX_THROTTLE = 1.0;
 static const double MIN_THROTTLE = -1.0;
 
