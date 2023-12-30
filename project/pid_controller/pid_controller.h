@@ -24,9 +24,9 @@ public:
     /*
     * Coefficients
     */
-    double Kp_{0.0};
-    double Ki_{0.0};
-    double Kd_{0.0};
+    double kp_{0.0};
+    double ki_{0.0};
+    double kd_{0.0};
 
     /*
     * Output limits
