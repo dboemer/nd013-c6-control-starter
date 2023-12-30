@@ -299,10 +299,26 @@ For the throttle as well as the steering, a parametric analysis was carried out,
 
 After this initial controller tuning, the optimal parameters are the following, with the imposed limits:
 
-step-wise nature of the target velocity
+| Controller |  P  |   I   |  D   | max | min |
+|------------|-----|-------|------|-----|-----|
+|  Throttle  | 0.3 |  0.01 | 0.01 |  1  | -1  |
+|  Steering  | 0.3 | 0.001 | 0.01 | 1.2 |-1.2 |
 
-- Trottle
-- Steering
+In the following subsection, plots for the throttle and steering are shown with parameter variations respective to the previous values in order to illustrate the optimality of the previous parameters (in the context of this first analysis).
+
+
+#### Throttle
+
+- Influence of P: 0.1, 0.3, 0.6:
+
+
+
+
+- Influence of I: 0.001, 0.01, 0.1:
+- Influence of D: 0.001, 0.01, 0.1:
+
+
+#### Steering
 
 
 ### Questions
