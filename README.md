@@ -232,6 +232,67 @@ In this short report, the results of this project are described in addition to t
 
 ## Build the PID controller object
 
+The PID controller object is defined in [pid_controller.h](project/pid_controller/pid_controller.h) and [pid_controller.cpp](project/pid_controller/pid_controller.cpp), and used in [main.cpp](project/pid_controller/main.cpp).
+
+
 ## Adapt the PID controller to the simulation
 
+The PId controller is adapted to the simulation, first for the throttle and then for the steering.
+
+### PID controller for throttle
+
+The controller for the throttle is initialized as follows:
+'''cpp
+PID pid_throttle = PID();
+pid_throttle.Init(KP_THROTTLE, KI_THROTTLE, KD_THROTTLE, MAX_THROTTLE, MIN_THROTTLE);
+'''
+
+The parameter values will be provided in the section [Evaluate and analyse the PID controller](#evaluate-and-analyse-the-pid-controller).  The corresponding velocity error was computed by the difference between the target velocity and the actual velocity.  The target velocity was chosen to be the velocity at the closest planned trajectory point:
+'''cpp
+error_throttle = v_points[closest_idx] - velocity;
+'''
+
+
+### PID controller for steering
+
+The controller for the steering is initialized as follows:
+'''cpp
+PID pid_steer = PID();
+pid_steer.Init(KP_STEER, KI_STEER, KD_STEER, MAX_STEER, MIN_STEER);
+'''
+
+The parameter values will be provided in the section [Evaluate and analyse the PID controller](#evaluate-and-analyse-the-pid-controller).  The corresponding steering error was computed by the difference between the target yaw and the actual yaw.  The target yaw can be defined in various ways.  Three different options were tested:
+
+- Version 1
+'''cpp
+target_yaw = angle_between_points(x_position, y_position, x_points[closest_idx], y_points[closest_idx]);
+'''
+
+- Version 2
+'''cpp
+//double target_yaw = angle_between_points(x_points[closest_idx], y_points[closest_idx], x_points[closest_idx+1], y_points[closest_idx+1]);
+
+'''
+
+- Version 3
+'''cpp
+double target_yaw = angle_between_points(x_points[0], y_points[0], x_points[x_points.size()-1], y_points[y_points.size()-1]);
+'''
+
+
+The target velocity was chosen to be the velocity at the closest planned trajectory point:
+'''cpp
+error_throttle = v_points[closest_idx] - velocity;
+'''
+
+
 ## Evaluate and analyse the PID controller
+
+### Analysis of the plots
+### Questions
+
+* **How would you design a way to automatically tune the PID parameters?**
+* **Could you explain the pros and cons of a PID controller, in particular, a model free controller?**
+* **What would you do to improve the PID controller?**
+
+
