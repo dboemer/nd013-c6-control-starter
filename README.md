@@ -293,7 +293,7 @@ In this section, plots of the velocity and yaw as well as the respective errors 
 
 ### Analysis of the plots
 
-The plots ot the velocity and yaw as well as the respective errors were used to tune the PID controllers, first for the throttle and then for the steering.  This order was chosen because the throttle was easier to tune than the steering due to the step-wise nature of the target velocity.
+The plots ot the velocity and yaw as well as the respective errors were used to tune the PID controllers, first for the throttle and then for the steering.  This order was chosen because the throttle was easier to tune than the steering due to the step-like nature of the target velocity.
 
 For the throttle as well as the steering, a parametric analysis was carried out, first by adjusting the proportional (P) term and then by adjusting the integral (I) and derivative (D) terms.  For zero I- and D-terms, P was increased until moderate oscillations occured.  Then, the I-term was increased until the target level was more or less reached.  And finally, the D-term was increased to limit the oscillations.
 
@@ -309,7 +309,7 @@ In the following subsection, plots for the throttle and steering are shown with 
 
 #### Throttle
 
-- Influence of P (0.2, 0.3, 0.6):
+- Influence of P (0.2, 0.3, 0.6): due to the step-like nature of the target velocity, the following figures illustrate quite well the influence of the P-parameter: if it is too small, the velocity only slowly reached the target speed.  If it is, however, too big, the velocity oscillates.  This behavior is also very well visible for in the error plots.  Finally, the first figure stops at about iteration 34 due to the collision with a vehicle, since the ego vehicle was not following sufficiently well the target trajectory.
 
 <p float="left">
   <img src="img/throttle-0.1-0.01-0.01.png" width="400"/>
@@ -325,7 +325,7 @@ In the following subsection, plots for the throttle and steering are shown with 
 </p>
 
 
-- Influence of I (0.001, 0.01, 0.1):
+- Influence of I (0.001, 0.01, 0.1): the integral term allows to reduce the bias, when this term is neither too small not too big.
 <p float="left">
   <img src="img/throttle-0.3-0.001-0.01.png" width="400"/>
   <img src="img/throttle-error-0.3-0.001-0.01.png" width="400"/>
@@ -340,7 +340,7 @@ In the following subsection, plots for the throttle and steering are shown with 
 </p>
 
 
-- Influence of D (0.001, 0.01, 0.1):
+- Influence of D (0.001, 0.01, 0.1): the derivative term has only a moderate influence in the considered range.  Further increasing its value leads to additional oscillations.
 
 <p float="left">
   <img src="img/throttle-0.3-0.01-0.001.png" width="400"/>
@@ -358,7 +358,7 @@ In the following subsection, plots for the throttle and steering are shown with 
 
 #### Steering
 
-- Influence of P (0.2, 0.3, 0.6):
+- Influence of P (0.2, 0.3, 0.6): if the proportional term is too small, the steering is insufficient to dodge the car.  This is why a collision occurred in the first case around iteration 27.  If the porportional term is too big, the steering becomes too significant, so that the error increases.
 
 <p float="left">
   <img src="img/yaw-0.1-0.001-0.01.png" width="400"/>
@@ -374,7 +374,7 @@ In the following subsection, plots for the throttle and steering are shown with 
 </p>
 
 
-- Influence of I (0.0001, 0.001, 0.01):
+- Influence of I (0.0001, 0.001, 0.01): in the considered range, the integral parameter has a limited influence.  Increasing it to 0.01 led to a collision, which is why a futher analysis was not conducted.
 
 <p float="left">
   <img src="img/yaw-0.3-0.0001-0.01.png" width="400"/>
@@ -390,7 +390,7 @@ In the following subsection, plots for the throttle and steering are shown with 
 </p>
 
 
-- Influence of D (0.001, 0.01, 0.1):
+- Influence of D (0.001, 0.01, 0.1): in the considered range, the derivative parameter has a limited influence.  Decreasing its value to 0.001 led to a collision.
 
 <p float="left">
   <img src="img/yaw-0.3-0.001-0.001.png" width="400"/>
@@ -405,10 +405,22 @@ In the following subsection, plots for the throttle and steering are shown with 
   <img src="img/yaw-error-0.3-0.001-0.1.png" width="400"/>
 </p>
 
+
 ### Questions
 
-* **How would you design a way to automatically tune the PID parameters?**
-* **Could you explain the pros and cons of a PID controller, in particular, a model free controller?**
-* **What would you do to improve the PID controller?**
+- **Could you explain the plots?** See above.
+
+- **What is the effect of the PID according to the plots, how each part of the PID affects the control command?** The proportional component is tasked with guiding the output towards the reference. The derivative component serves as a reactive element, responsible for detecting variations in the reference. Lastly, the integration part aims to diminish the steady-state error.
+
+- **How would you design a way to automatically tune the PID parameters?** The optimization of PID parameters can be carried out through the twiddle algorithm, a method that involves iteratively adjusting PID parameters based on the observation of total error. The algorithm allows for dynamic changes in the magnitude of adjustments, enabling fine-tuning during the optimization process.
+
+- **Could you explain the pros and cons of a PID controller, in particular, a model free controller?** Its model-free characteristic, as indicated, offers the advantage of not requiring dynamic system modeling; instead, only the tuning of its gains is necessary. Moreover, its implementation is simpler when compared to alternative approaches. The challenge with linear PID control lies in its failure to consider certain nonlinearities within the system. Tuning its parameters can be difficult, and in some instances, achieving optimal performance becomes nearly impossible.
+
+- **What would you do to improve the PID controller?** Potential enhancements involve incorporating an automatic parameter tuning method, as explained above, or simplifying the conditions, in which the parameters are tuned (in contrast to the example in carla).
 
 
+### Video
+
+A video with the (so far) optimal parameters is available [here](img/video.mp4).
+
+<img src="img/video.gif" width="600"/>
