@@ -3,9 +3,9 @@
 ## Table of contents
 
 - [Project overview](#project-overview)
-- [Dependencies](dependencies)
-- [Instructions](instructions)
-- [Report](report)
+- [Dependencies](#dependencies)
+- [Instructions](#instructions)
+- [Report](#report)
 
 
 # Project overview
@@ -113,7 +113,6 @@ The sections ahead will guide you through the steps to build and run the project
 Open the VM workspace and log into the VM to practice the current project. 
 Once you log into the VM, open a Terminal window. 
 
-<br/><br/>
 
 ## Step 2. Clone the Repository
 
@@ -127,8 +126,6 @@ Change to the project directory.
 ```bash
 cd nd013-c6-control-starter/project
 ```
-
-<br/><br/>
 
 ## Step 3. Review the starter files
 You will find the following files in the project directory.
@@ -146,7 +143,6 @@ You will find the following files in the project directory.
 └── throttle_pid_data.txt
 ```
 
-<br/><br/>
 
 ## Step 4. Start the Carla Server
 Start the Carla server by executing the following shell script. 
@@ -156,8 +152,6 @@ Start the Carla server by executing the following shell script.
 This file will, in turn, execute the **/opt/carla-simulator/CarlaUE4.sh** script. 
 
 
-<br/><br/>
-
 ## Step 5. Install Dependencies
 Open another Terminal tab, and change to the **nd013-c6-control-starter/project**  directory. Execute the following shell script to install the project-specific dependencies. 
 ```bash
@@ -165,7 +159,6 @@ Open another Terminal tab, and change to the **nd013-c6-control-starter/project*
 ```
 This file will install utilities such as, `libuv1-dev`, `libssl-dev`, `libz-dev`, `uWebSockets`. 
 
-<br/><br/>
 
 ## Step 6. Update the Project Code
 
@@ -183,11 +176,8 @@ Update the following files as per the classroom instructions. You will TODO mark
 - **main.cpp**
 
 
-<br/>
-
 > **Important**: At this moment, it is important to save your work and push it back to the remote Github repository. 
 
-<br/><br/>
 
 ### Update Notes
 In the previous version of the project starter code, we had **libcarla-install/** and **rpclib/** directories inside the **pid_controller/** directory. But, those directories are no longer needed in the current version of the starter code because the current **CMakeLists.txt** file has corresponding `includes` and `libs` added at `/opt/carla-source`.
@@ -200,7 +190,6 @@ git clone https://github.com/rpclib/rpclib.git
 ```
 This library is a **msgpack-rpc** library written using modern C++. The goal of building this library was to provide a simple RPC solution. However, all of the above-mentioned steps are **no longer needed** in the current version of the project strarter code. 
 
-<br/><br/>
 
 ## Step 7. Build and Execute the Project
 
@@ -230,7 +219,6 @@ ps -aux | grep carla
 kill id     
 ```
 
-<br/><br/>
 
 ## Step 8. Check the Rubric and Submit
 
